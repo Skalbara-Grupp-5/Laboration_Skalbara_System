@@ -23,7 +23,7 @@ Follow these steps to set up and run the OnlineMeetingSchedule project on your l
 **1. Clone the project:**
 
 ```
-git clone https://github.com/Civil-Data/OnlineMeetingSchedule.git
+git clone https://github.com/Stocken99/Laboration_Skalbara_System
 ```
 
 **2. Configure the backend:**
