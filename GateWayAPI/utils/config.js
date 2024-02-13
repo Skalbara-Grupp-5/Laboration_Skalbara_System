@@ -1,5 +1,5 @@
-const PORT = 8080;
+const PORT = 5000;
 
 const serverUrl = `http://localhost:${PORT}`;
 
-export default serverUrl;
+module.exports = serverUrl;;

@@ -11,7 +11,7 @@ import { useDateContext } from "../../contexts/DateContext";
 const fetchUsers = async () => {
 	try {
 		const listOfUsers = [];
-		const { data } = await axios.get(serverUrl + "/users");
+		const { data } = await axios.get("http://localhost:8080/gateway/users");
 		data.forEach(user => {
 			if (user.firstName) {
 				listOfUsers.push(user);

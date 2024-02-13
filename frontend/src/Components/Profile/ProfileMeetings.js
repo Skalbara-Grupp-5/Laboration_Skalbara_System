@@ -8,7 +8,7 @@ import serverUrl from "../../utils/config";
 
 const GetMeetings = async user => {
 	try {
-		const { data } = await axios.get(serverUrl + `/meeting/users?paramName=${user._id}`);
+		const { data } = await axios.get(`http://localhost:8080/gateway/meeting/users?paramName=${user._id}`);
 
 		return data;
 	} catch (error) {

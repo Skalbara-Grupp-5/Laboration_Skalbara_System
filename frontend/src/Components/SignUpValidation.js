@@ -67,8 +67,7 @@ const Signup = () => {
 		}
 
 		try {
-			const { data } = await axios.post(
-				serverUrl + "/register",
+			const { data } = await axios.post("http://localhost:8080/gateway/register",
 
 				{ firstName, lastName, email, password },
 				{ withCredentials: true }
