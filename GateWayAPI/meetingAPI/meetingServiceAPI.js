@@ -36,11 +36,31 @@ module.exports.GetMeetingsByDate = async (req, res) =>{
 
 module.exports.Create = async (req, res) =>{
     try {
+		const {
+			organizer,
+			participants,
+			startTime,
+			endTime,
+			startDate,
+			endDate,
+			location,
+			title,
+			description,
+		} = req.body;
         // Make a request to the external API
         const axiosRes = await axios.post("http://localhost:8082/meeting/create",
         {
-            params: req.query // Pass query parameters from the original request
-        }
+			organizer,
+			participants,
+			startTime,
+			endTime,
+			startDate,
+			endDate,
+			location,
+			title,
+			description, // Pass query parameters from the original request
+        },
+        { withCredentials: true }
         );
 
         // Forward the response from the external API to the client
@@ -54,7 +74,7 @@ module.exports.Create = async (req, res) =>{
 module.exports.Update = async (req, res) =>{
     try {
         const {
-			meetingID,
+			organizer,
 			participants,
 			startTime,
 			endTime,
@@ -67,7 +87,7 @@ module.exports.Update = async (req, res) =>{
         // Make a request to the external API
         const axiosRes = await axios.post("http://localhost:8082/meeting/update",
         {
-            meetingID,
+            organizer,
 			participants,
 			startTime,
 			endTime,

@@ -55,15 +55,10 @@ const CreateMeeting = () => {
 				participantList.push(participant._id);
 			});
 
-			const axiosRes = await axios.post("http://localhost:8080/gateway/meeting/create", { //fetch??
-				method: "POST",
-
-				headers: { "Content-type": "application/json" },
-				body: JSON.stringify({
-					organizer: user._id,
+			const axiosRes = await axios.post("http://localhost:8080/gateway/meeting/create", {
+					organizer: user._id, //65ccaf9795896c22620ef669
 					participants: participantList,
 					...meetingDetails,
-				}),
 			});
 		} catch (error) {
 			// Handle error
