@@ -2,10 +2,16 @@ const axios = require('axios');
 
 module.exports.Register = async (req, res) =>{
     try {
+        const { firstName, lastName, email, password } = req.body
         // Make a request to the external API
         const axiosRes = await axios.post("http://localhost:8081/register", {
-            params: req.query // Pass query parameters from the original request
-        });
+            firstName,
+            lastName,
+            email,
+            password // Pass query parameters from the original request
+        },
+        { withCredentials: true }
+        );
 
         // Forward the response from the external API to the client
         res.json(axiosRes.data);
@@ -17,10 +23,14 @@ module.exports.Register = async (req, res) =>{
 
 module.exports.Login = async (req, res) =>{
     try {
+        const { email, password } = req.body;
         // Make a request to the external API
         const axiosRes = await axios.post("http://localhost:8081/login", {
-            params: req.query // Pass query parameters from the original request
-        });
+            email,
+            password // Pass query parameters from the original request
+        },
+        { withCredentials: true }
+        );
 
         // Forward the response from the external API to the client
         res.json(axiosRes.data);

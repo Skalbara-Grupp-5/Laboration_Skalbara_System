@@ -3,7 +3,7 @@ const axios = require('axios');
 module.exports.UserVerification = async (req, res) =>{
     try {
         // Make a request to the external API
-        const axiosRes = await axios.post("http://localhost:8081/UserVerification", {
+        const axiosRes = await axios.post("http://localhost:8081/", {
             params: req.query // Pass query parameters from the original request
         });
 

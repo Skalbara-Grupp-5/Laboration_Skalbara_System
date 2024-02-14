@@ -122,7 +122,7 @@ const PersonalInfo = ({
 					newPassword,
 					emailChanged,
 				},
-				{ withCredentials: true }
+				//{ withCredentials: true }
 			);
 			emailChanged = false;
 			const { success, message } = data;

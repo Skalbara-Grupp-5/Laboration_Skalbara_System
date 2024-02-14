@@ -33,7 +33,7 @@ const handleSuccess = msg =>
 		position: "bottom-right",
 	});
 
-const deleteMeeting = async meeting => {
+const deleteMeeting = async meeting => { //Why no next?
 	try {
 		const { data } = await axios.delete(`http://localhost:8080/gateway/meeting/delete?meetingID=${meeting._id}`);
 		handleSuccess(data.message);
@@ -84,7 +84,7 @@ const MeetingItem = ({ meeting }) => {
 					participants: participantList,
 					...meetingDetails,
 				},
-				{ withCredentials: true }
+				//{ withCredentials: true }
 			);
 			handleSuccess(data.message);
 		} catch (error) {

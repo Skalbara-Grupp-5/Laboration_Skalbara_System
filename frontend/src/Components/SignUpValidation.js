@@ -41,7 +41,7 @@ const Signup = () => {
 	//Handle all inputs from user
 	const handleSubmit = async e => {
 		e.preventDefault();
-
+		
 		if (!isAlpha(firstName) || !isAlpha(lastName)) {
 			return handleError("First name and last name should be letters");
 		}
@@ -53,24 +53,25 @@ const Signup = () => {
 		if (password !== confirmPassword) {
 			return handleError("Passwords do not match");
 		}
+		
 
 		if (!firstName || !lastName || !email || !password || !confirmEmail || !confirmPassword) {
 			return handleError("All fields are required");
 		}
 
-		if (password.length < 8) {
+		if (password.length < 1) { // set to 1 for testing
 			return handleError("Password should be at least 8 characters");
 		}
 
 		if (!isEmail(email)) {
 			return handleError("Email is not valid");
 		}
-
+		
 		try {
 			const { data } = await axios.post("http://localhost:8080/gateway/register",
 
 				{ firstName, lastName, email, password },
-				{ withCredentials: true }
+				//{ withCredentials: true }
 			);
 			const { success, message } = data;
 			if (success) {
