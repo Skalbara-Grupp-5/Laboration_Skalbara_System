@@ -55,7 +55,7 @@ const CreateMeeting = () => {
 				participantList.push(participant._id);
 			});
 
-			await fetch(serverUrl + "/meeting/create", {
+			const axiosRes = await axios.post("http://localhost:8080/gateway/meeting/create", { //fetch??
 				method: "POST",
 
 				headers: { "Content-type": "application/json" },
