@@ -60,7 +60,6 @@ module.exports.Create = async (req, res) =>{
 			title,
 			description, // Pass query parameters from the original request
         },
-        { withCredentials: true }
         );
 
         // Forward the response from the external API to the client

@@ -5,7 +5,9 @@ module.exports.UserVerification = async (req, res) =>{
         // Make a request to the external API
         const axiosRes = await axios.post("http://localhost:8081/", {
             params: req.query // Pass query parameters from the original request
-        });
+        },
+        { withCredentials: true }
+        );
 
         // Forward the response from the external API to the client
         res.json(axiosRes.data);
