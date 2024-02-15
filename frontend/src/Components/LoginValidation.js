@@ -39,12 +39,11 @@ const Login = () => {
 
 		try {
 			// Send a POST request to login
-			const { data } = await axios.post(
-				serverUrl + "/login",
+			const { data } = await axios.post("http://localhost:8080/gateway/login",
 				{
 					...inputValue,
 				},
-				{ withCredentials: true }
+				//{ withCredentials: true }
 			);
 			const { success, message } = data;
 			if (success) {

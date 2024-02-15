@@ -11,7 +11,7 @@ import { useDateContext } from "../../contexts/DateContext";
 const fetchUsers = async () => {
 	try {
 		const listOfUsers = [];
-		const { data } = await axios.get(serverUrl + "/users");
+		const { data } = await axios.get("http://localhost:8080/gateway/users");
 		data.forEach(user => {
 			if (user.firstName) {
 				listOfUsers.push(user);
@@ -26,6 +26,7 @@ const fetchUsers = async () => {
 
 const CreateMeeting = () => {
 	const { user } = useUserContext();
+	console.log(user.id);
 	const { date, dayString, clickedMonth, yearToDisplay } = useDayView();
 	const { getDate } = useDateContext();
 	const dateString = `${yearToDisplay}-${clickedMonth.toString().padStart(2, "0")}-${date
@@ -54,16 +55,13 @@ const CreateMeeting = () => {
 			participants.forEach(participant => {
 				participantList.push(participant._id);
 			});
-
-			await fetch(serverUrl + "/meeting/create", {
-				method: "POST",
-
-				headers: { "Content-type": "application/json" },
-				body: JSON.stringify({
+			console.log(user.id);
+			console.log(participantList);
+			console.log(meetingDetails);
+			const axiosRes = await axios.post("http://localhost:8080/gateway/meeting/create", {
 					organizer: user._id,
 					participants: participantList,
 					...meetingDetails,
-				}),
 			});
 		} catch (error) {
 			// Handle error

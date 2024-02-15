@@ -110,8 +110,7 @@ const PersonalInfo = ({
 		}
 		// Send a POST request to update user information
 		try {
-			const { data } = await axios.post(
-				serverUrl + "/updateUser",
+			const { data } = await axios.post("http://localhost:8080/gateway/updateUser",
 				{
 					newFirstName: newFirstName === "" ? firstName : newFirstName,
 					newLastName: newLastName === "" ? lastName : newLastName,
@@ -123,7 +122,7 @@ const PersonalInfo = ({
 					newPassword,
 					emailChanged,
 				},
-				{ withCredentials: true }
+				//{ withCredentials: true }
 			);
 			emailChanged = false;
 			const { success, message } = data;

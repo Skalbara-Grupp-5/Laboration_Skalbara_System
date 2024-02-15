@@ -3,5 +3,14 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "eslint": "^8.50.0",
     "eslint-plugin-react": "^7.33.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.4",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.2",
+    "validator": "^13.11.0"
   }
 }

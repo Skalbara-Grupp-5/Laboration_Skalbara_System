@@ -61,7 +61,7 @@ export const LoginProvider = ({ children }) => {
 					removeCookie("token");
 					updateLoginStatus(false);
 				}
-				const { data } = await axios.post(serverUrl + "/", {}, { withCredentials: true });
+				const { data } = await axios.post("http://localhost:8080/gateway/", {});
 				// const { user } = data;
 				// saveUser(user);
 				const { status, user } = data;

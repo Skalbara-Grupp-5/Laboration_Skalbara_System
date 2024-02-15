@@ -15,7 +15,7 @@ import { useUserContext } from "../../contexts/LoginContext";
 const fetchUsers = async () => {
 	try {
 		const listOfUsers = [];
-		const { data } = await axios.get(serverUrl + "/users");
+		const { data } = await axios.get("http://localhost:8080/gateway/users");
 		data.forEach(user => {
 			if (user.firstName) {
 				listOfUsers.push(user);
@@ -33,9 +33,9 @@ const handleSuccess = msg =>
 		position: "bottom-right",
 	});
 
-const deleteMeeting = async meeting => {
+const deleteMeeting = async meeting => { //Why no next?
 	try {
-		const { data } = await axios.delete(serverUrl + `/meeting/delete?meetingID=${meeting._id}`);
+		const { data } = await axios.delete(`http://localhost:8080/gateway/meeting/delete?meetingID=${meeting._id}`);
 		handleSuccess(data.message);
 	} catch (error) {
 		console.log("Error Deleting Meeting");
@@ -78,14 +78,13 @@ const MeetingItem = ({ meeting }) => {
 			participants.forEach(participant => {
 				participantList.push(participant._id);
 			});
-			const { data } = await axios.post(
-				serverUrl + "/meeting/update",
+			const { data } = await axios.post("http://localhost:8080/gateway/meeting/update",
 				{
 					meetingID: meeting._id,
 					participants: participantList,
 					...meetingDetails,
 				},
-				{ withCredentials: true }
+				//{ withCredentials: true }
 			);
 			handleSuccess(data.message);
 		} catch (error) {
