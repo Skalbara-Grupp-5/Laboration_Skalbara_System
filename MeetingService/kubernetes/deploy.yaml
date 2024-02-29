@@ -14,6 +14,6 @@ spec:
         spec:
             containers:
                 - name: my-container
-                  image: f7a72784a24a:v1
+                  image: tsfn14g99.azurecr.io/f7a72784a24a:v1
                   ports:
                       - containerPort: 8082
