@@ -25,8 +25,6 @@ jobs:
             CONTAINER_REGISTRY_LOGIN_SERVER: ${{ secrets.CONTAINER_REGISTRY_LOGIN_SERVER }}
             CONTAINER_REGISTRY_USERNAME: ${{ secrets.CONTAINER_REGISTRY_USERNAME }}
             CONTAINER_REGISTRY_PASSWORD: ${{ secrets.CONTAINER_REGISTRY_PASSWORD }}
-            STORAGE_ACCOUNT_NAME: ${{ secrets.STORAGE_ACCOUNT_NAME }}
-            STORAGE_ACCESS_KEY: ${{ secrets.STORAGE_ACCOUNT_KEY }}
 
         steps:
             # Checks-out repository under $GITHUB_WORKSPACE.
@@ -47,7 +45,7 @@ jobs:
             - name: Publish
               run: |
                   echo $CONTAINER_REGISTRY_PASSWORD | docker login $CONTAINER_REGISTRY_LOGIN_SERVER --username $CONTAINER_REGISTRY_USERNAME --password-stdin
-                  docker push $CONTAINER_REGISTRY_LOGIN_SERVER/MeetingService:$VERSION
+                  docker push $CONTAINER_REGISTRY_LOGIN_SERVER/meetingservice:$VERSION
 
             # Installs Kubectl and connects it to the Azure Kubernetes Service (AKS) cluster.
             # https://github.com/marketplace/actions/kubernetes-cli-kubectl
@@ -59,4 +57,4 @@ jobs:
             # Expands the manifest YAML file (i.e. replaces placeholders in the YAML file with environment variable values)
             # and deploys the microservice to the Azure Kubernetes Service (AKS) cluster.
             - name: Deploy
-              run: envsubst < kubernetes/deploy.yaml | kubectl apply -f -
+              run: envsubst < ../MeetingService/kubernetes/deploy.yaml | kubectl apply -f -
