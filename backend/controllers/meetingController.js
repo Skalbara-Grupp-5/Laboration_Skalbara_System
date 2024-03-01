@@ -1,10 +1,16 @@
 // Import the Meeting model
 const Meeting = require("../models/meeting.model");
 
+//module.exports.sum = (a, b) => {
+//	return a + b;
+//}
+//module.exports = sum;
+
 // Get a specific meeting by userId
 module.exports.GetMeetingsByUserId = async (req, res) => {
 	try {
 		const userID = req.query.paramName;
+		
 		// Find the meeting with the provided ID
 		const meeting = await Meeting.find({
 			$or: [{ organizer: userID }, { participants: { $in: [userID] } }],
@@ -12,6 +18,8 @@ module.exports.GetMeetingsByUserId = async (req, res) => {
 		res.status(200).json(meeting);
 	} catch (error) {
 		console.error("Unable to find meeting.", error);
+
+		res.status(500).json({error: "Unable to find meeting."});
 	}
 };
 
