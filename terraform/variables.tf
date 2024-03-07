@@ -1,5 +1,5 @@
 variable "app_name" {
-  default = "tsfn14g00"
+  default = "tsfn14g99"
 }
 
 variable "location" {

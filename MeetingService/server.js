@@ -12,14 +12,14 @@ const PORT = 8082;
 // Connect to the MongoDB database using Mongoose
 mongoose
 	.connect(
-		`mongodb+srv://matilda:hej123@cluster0.40ijduc.mongodb.net/Meeting?retryWrites=true&w=majority`,
+		"mongodb+srv://matilda:hej123@cluster0.40ijduc.mongodb.net/Meeting?retryWrites=true&w=majority",
 		{
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 		}
 	)
 	.then(() => console.log("MongoDB is connected successfully \n"))
-	.catch(err => console.error(err));
+	.catch((err) => console.error(err));
 
 // Start the Express server and listen on the defined port
 app.listen(PORT, () => {
@@ -29,7 +29,7 @@ app.listen(PORT, () => {
 // Configure CORS middleware to allow cross-origin requests from the client
 app.use(
 	cors({
-		origin: [`http://localhost:8080`],
+		origin: ["http://localhost:8080"],
 		methods: ["GET", "POST", "PUT", "DELETE"],
 		credentials: true,
 	})
