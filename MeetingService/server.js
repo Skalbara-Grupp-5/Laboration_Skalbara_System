@@ -29,7 +29,7 @@ app.listen(PORT, () => {
 // Configure CORS middleware to allow cross-origin requests from the client
 app.use(
 	cors({
-		origin: ["http://localhost:8080"],
+		//origin: ["http://localhost:8080"],
 		methods: ["GET", "POST", "PUT", "DELETE"],
 		credentials: true,
 	})
