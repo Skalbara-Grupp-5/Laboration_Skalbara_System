@@ -18,7 +18,7 @@ spec:
         imagePullPolicy: IfNotPresent
         env:
         - name: PORT
-          value: "8082"
+          value: "4002"
         resources:
           requests:
             cpu: 126m
@@ -26,4 +26,17 @@ spec:
           limits:
             cpu: 256m
             memory: 256Mi
+---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: meetingservice
+  spec:
+    selector:
+      app: MeetingService
+    type: ClusterIP
+    ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 4002
 
