@@ -38,14 +38,31 @@ jobs:
                   cache-dependency-path: "MeetingService/package-lock.json" # Path to package-lock.json in gateway subfolder.
 
             # Builds the Docker image.
-            - name: Build
+            - name: Build-meeting
               run: docker build -t $CONTAINER_REGISTRY_LOGIN_SERVER/meetingservice:$VERSION --file ./Dockerfile .
 
             # Publishes the Docker image to the Azure Container Registry.
-            - name: Publish
+            - name: Publish-meeting
               run: |
                   echo $CONTAINER_REGISTRY_PASSWORD | docker login $CONTAINER_REGISTRY_LOGIN_SERVER --username $CONTAINER_REGISTRY_USERNAME --password-stdin
                   docker push $CONTAINER_REGISTRY_LOGIN_SERVER/meetingservice:$VERSION
+            
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 19.9.0
+                  cache: "npm"
+                  cache-dependency-path: "MeetingService/../GateWayAPI/package-lock.json" # Path to package-lock.json in gateway subfolder.
+
+            # Builds the Docker image.
+            - name: Build-gatway
+              run: docker build -t $CONTAINER_REGISTRY_LOGIN_SERVER/gatewayapi:$VERSION --file ./Dockerfile .
+
+            # Publishes the Docker image to the Azure Container Registry.
+            - name: Publish-gateway
+              run: |
+                  echo $CONTAINER_REGISTRY_PASSWORD | docker login $CONTAINER_REGISTRY_LOGIN_SERVER --username $CONTAINER_REGISTRY_USERNAME --password-stdin
+                  docker push $CONTAINER_REGISTRY_LOGIN_SERVER/gatewayapi:$VERSION
+
 
             # Installs Kubectl and connects it to the Azure Kubernetes Service (AKS) cluster.
             # https://github.com/marketplace/actions/kubernetes-cli-kubectl
@@ -56,5 +73,13 @@ jobs:
 
             # Expands the manifest YAML file (i.e. replaces placeholders in the YAML file with environment variable values)
             # and deploys the microservice to the Azure Kubernetes Service (AKS) cluster.
+
+            - name: Deploy-gateway
+              run: envsubst < ../GateWayAPI/kubernetes/deploy.yaml | kubectl apply -f -
+
+            - uses: actions/checkout@v4
+
             - name: Deploy
-              run: envsubst < ../MeetingService/kubernetes/deploy.yaml | kubectl apply -f -
+              run: envsubst < /kubernetes/deploy.yaml | kubectl apply -f -
+
+            - uses: actions/checkout@v4

@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: GateWayAPI
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: GateWayAPI
+  template:
+    metadata:
+      labels:
+        app: GateWayAPI
+    spec:
+      containers: 
+      - name: GateWayAPI
+        image: $CONTAINER_REGISTRY_LOGIN_SERVER/video-streaming:$VERSION
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: PORT
+          value: "4000"
+        resources:
+          requests:
+            cpu: 126m
+            memory: 126Mi
+          limits:
+            cpu: 256m
+            memory: 256Mi
