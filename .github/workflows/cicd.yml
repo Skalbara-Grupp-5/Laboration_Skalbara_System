@@ -75,11 +75,11 @@ jobs:
             # and deploys the microservice to the Azure Kubernetes Service (AKS) cluster.
 
             - name: Deploy-gateway
-              run: envsubst < ./GateWayAPI\kubernetes\deploy-gateway.yaml | kubectl apply -f -
+              run: envsubst < ./GateWayAPI/kubernetes/deploy-gateway.yaml | kubectl apply -f -
 
             - uses: actions/checkout@v4
 
             - name: Deploy-meeting
-              run: envsubst < ./MeetingService\kubernetes\deploy-meeting.yaml | kubectl apply -f -
+              run: envsubst < ./MeetingService/kubernetes/deploy-meeting.yaml | kubectl apply -f -
 
             - uses: actions/checkout@v4
