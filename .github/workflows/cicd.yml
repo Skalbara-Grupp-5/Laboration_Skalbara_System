@@ -39,7 +39,7 @@ jobs:
 
             # Builds the Docker image.
             - name: Build-meeting
-              run: docker build -t $CONTAINER_REGISTRY_LOGIN_SERVER/meetingservice:$VERSION --file ./../MeetingService/Dockerfile .
+              run: docker build -t $CONTAINER_REGISTRY_LOGIN_SERVER/meetingservice:$VERSION --file ./MeetingService/Dockerfile .
 
             # Publishes the Docker image to the Azure Container Registry.
             - name: Publish-meeting
@@ -55,7 +55,7 @@ jobs:
 
             # Builds the Docker image.
             - name: Build-gatway
-              run: docker build -t $CONTAINER_REGISTRY_LOGIN_SERVER/gatewayapi:$VERSION --file ./Dockerfile .
+              run: docker build -t $CONTAINER_REGISTRY_LOGIN_SERVER/gatewayapi:$VERSION --file ./GateWayAPI/Dockerfile .
 
             # Publishes the Docker image to the Azure Container Registry.
             - name: Publish-gateway
