@@ -14,7 +14,7 @@ spec:
     spec:
       containers: 
       - name: GateWayAPI
-        image: $CONTAINER_REGISTRY_LOGIN_SERVER/video-streaming:$VERSION
+        image: $CONTAINER_REGISTRY_LOGIN_SERVER/gatewayapi:$VERSION
         imagePullPolicy: IfNotPresent
         env:
         - name: PORT
