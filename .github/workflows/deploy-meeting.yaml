@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: MeetingService
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: MeetingService
+  template:
+    metadata:
+      labels:
+        app: MeetingService
+    spec:
+      containers: 
+      - name: MeetingService
+        image: $CONTAINER_REGISTRY_LOGIN_SERVER/meetingservice:$VERSION
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: PORT
+          value: "8082"
+        resources:
+          requests:
+            cpu: 126m
+            memory: 126Mi
+          limits:
+            cpu: 256m
+            memory: 256Mi
+
