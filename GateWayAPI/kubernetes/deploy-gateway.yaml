@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: GateWayAPI
+  name: gatewayapi
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: GateWayAPI
+      app: gatewayapi
   template:
     metadata:
       labels:
-        app: GateWayAPI
+        app: gatewayapi
     spec:
       containers: 
       - name: GateWayAPI
@@ -33,7 +33,7 @@ spec:
     name: loadbalancergatewayapi
   spec:
     selector:
-      app: GateWayAPI
+      app: gatewayapi
     type: LoadBalancer
     ports:
     - protocol: TCP
