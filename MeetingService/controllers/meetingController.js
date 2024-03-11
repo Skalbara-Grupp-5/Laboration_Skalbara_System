@@ -5,24 +5,36 @@ const Meeting = require("../models/meeting.model");
 module.exports.GetMeetingsByUserId = async (req, res) => {
 	try {
 		const userID = req.query.paramName;
+		//const userExists = await User.findOne({userID : userId})
 		// Find the meeting with the provided ID
-		const meeting = await Meeting.find({
-			$or: [{ organizer: userID }, { participants: { $in: [userID] } }],
-		});
-		res.status(200).json(meeting);
+		if (userID.length === 24)
+		{
+			const meeting = await Meeting.find({
+				$or: [{ organizer: userID }, { participants: { $in: [userID] } }],
+			});
+			res.status(200).json(meeting);
+			console.log("queried userID",userID);
+		}
+		else 
+		{
+			console.log("UserId is invalid");
+			res.status(400).json({message: "Error finding meetings"});
+		}
 	} catch (error) {
-		console.error("Unable to find meeting.", error);
+		console.error("Error finding meetings by userId.", error);
+		res.status(400).json({message: "Error finding meetings"});
 	}
 };
 
-// Get a specific meeting by userId
+// Get a specific meeting by date
 module.exports.GetMeetingsByDate = async (req, res) => {
 	try {
 		const meetingDate = req.query.date;
 
-		// Find the meeting with the provided ID
+		// Find the meeting with the provided date
 		const meeting = await Meeting.find({ startDate: meetingDate });
 		res.status(200).json(meeting);
+		console.log("Got meeting by date");
 	} catch (error) {
 		console.error("Unable to find meeting.", error);
 	}
