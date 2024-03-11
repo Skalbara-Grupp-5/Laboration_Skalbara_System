@@ -34,6 +34,7 @@ module.exports.GetMeetingsByDate = async (req, res) => {
 		// Find the meeting with the provided date
 		const meeting = await Meeting.find({ startDate: meetingDate });
 		res.status(200).json(meeting);
+		console.log("Got meeting by date");
 	} catch (error) {
 		console.error("Unable to find meeting.", error);
 	}
