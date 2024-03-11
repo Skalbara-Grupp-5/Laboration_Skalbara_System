@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meetingservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meetingservice
+  template:
+    metadata:
+      labels:
+        app: meetingservice
+    spec:
+      containers: 
+      - name: meetingservice
+        image: $CONTAINER_REGISTRY_LOGIN_SERVER/meetingservice:$VERSION
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: PORT
+          value: "4002"
+        resources:
+          requests:
+            cpu: 126m
+            memory: 126Mi
+          limits:
+            cpu: 256m
+            memory: 256Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: servicemeetingservice
+spec:
+  selector:
+    app: meetingservice
+  type: ClusterIP
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 4002
