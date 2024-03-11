@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gatewayapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gatewayapi
+  template:
+    metadata:
+      labels:
+        app: gatewayapi
+    spec:
+      containers: 
+      - name: gatewayapi
+        image: $CONTAINER_REGISTRY_LOGIN_SERVER/gatewayapi:$VERSION
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: PORT
+          value: "4000"
+        resources:
+          requests:
+            cpu: 126m
+            memory: 126Mi
+          limits:
+            cpu: 256m
+            memory: 256Mi
+---
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: loadbalancergatewayapi
+  spec:
+    selector:
+      app: gatewayapi
+    type: LoadBalancer
+    ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 4000

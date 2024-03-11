@@ -26,7 +26,7 @@ const allowedOrigins = [
 // Configure CORS middleware to allow cross-origin requests from the client
 app.use(
 	cors({
-		origin: allowedOrigins,
+		//origin: allowedOrigins,
 		methods: ["GET", "POST", "PUT", "DELETE"],
 		credentials: true,
 	})
