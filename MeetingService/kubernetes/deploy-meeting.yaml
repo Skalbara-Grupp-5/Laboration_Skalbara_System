@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: MeetingService
+  name: meetingservice
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: MeetingService
+      app: meetingservice
   template:
     metadata:
       labels:
-        app: MeetingService
+        app: meetingservice
     spec:
       containers: 
-      - name: MeetingService
+      - name: meetingservice
         image: $CONTAINER_REGISTRY_LOGIN_SERVER/meetingservice:$VERSION
         imagePullPolicy: IfNotPresent
         env:
@@ -33,7 +33,7 @@ spec:
     name: meetingservice
   spec:
     selector:
-      app: MeetingService
+      app: meetingservice
     type: ClusterIP
     ports:
     - protocol: TCP
