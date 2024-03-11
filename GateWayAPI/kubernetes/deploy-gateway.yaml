@@ -13,7 +13,7 @@ spec:
         app: gatewayapi
     spec:
       containers: 
-      - name: GateWayAPI
+      - name: gatewayapi
         image: $CONTAINER_REGISTRY_LOGIN_SERVER/gatewayapi:$VERSION
         imagePullPolicy: IfNotPresent
         env:
