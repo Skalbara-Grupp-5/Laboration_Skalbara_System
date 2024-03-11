@@ -14,7 +14,7 @@ spec:
     spec:
       containers: 
       - name: meetingservice
-        image: $CONTAINER_REGISTRY_LOGIN_SERVER/meetingservice:$VERSION
+        image: $CONTAINER_REGISTRY_LOGIN_SERVER/MeetingService:$VERSION
         imagePullPolicy: IfNotPresent
         env:
         - name: PORT
