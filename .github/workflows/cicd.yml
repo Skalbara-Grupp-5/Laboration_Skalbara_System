@@ -53,6 +53,9 @@ jobs:
                   cache: "npm"
                   cache-dependency-path: "GateWayAPI/package-lock.json" # Path to package-lock.json in gateway subfolder.
 
+            - name: Run-Tests
+              run: npm test
+
             # Builds the Docker image.
             - name: Build-gatway
               run: docker build -t $CONTAINER_REGISTRY_LOGIN_SERVER/gatewayapi:$VERSION --file ./GateWayAPI/Dockerfile .
