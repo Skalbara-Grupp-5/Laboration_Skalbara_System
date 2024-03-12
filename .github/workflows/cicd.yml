@@ -52,7 +52,10 @@ jobs:
                   node-version: 19.9.0
                   cache: "npm"
                   cache-dependency-path: "GateWayAPI/package-lock.json" # Path to package-lock.json in gateway subfolder.
-
+            #Install Dependencies
+            - name: Install Dependencies
+              run: npm install
+            #Run tests  
             - name: Run-Tests
               run: npm test
 
